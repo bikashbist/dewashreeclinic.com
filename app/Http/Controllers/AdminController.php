@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+
+use App\Models\Message;
 use Illuminate\Http\RedirectResponse;
 
 class AdminController extends Controller
@@ -19,4 +21,10 @@ class AdminController extends Controller
 
         return redirect('/login');
     }
+    public function Message()
+        {
+            $messages = Message::all(); 
+            return view('admin.pages.messages.index', compact('messages')); 
+        }
+    
 }

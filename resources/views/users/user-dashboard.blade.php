@@ -12,6 +12,7 @@
 
         <button class="toggle-button btn-menu d-flex align-items-center justify-content-center"> ☰</button>
         @include('users.layout.mobile-navbar')
+      
         <div class="content" id="home">
             <div class="banner d-flex justify-content-center align-items-center">
                 <video autoplay muted loop playsinline>
@@ -33,21 +34,27 @@
                                 <span> Welcome to Bakers's Gallery! </span>
                                 <h1>Great Tasting Cafe </h1>
                                 <div class="py-4">
-                                    <p>Bakers Gallery is a delightful cafe known for its variety of delicious offerings.
-                                        Specializing in mouthwatering burgers, flavorful momos, savory chow mein, and
-                                        freshly
-                                        baked pizzas, it caters to every craving. Whether you're looking for a quick
-                                        snack or a
-                                        satisfying meal.
-                                    </p>
-                                </div>
 
-                                <div class="what-app d-flex flex-wrap align-items-center">
-                                    <a class="whatapp-btn" href="https://wa.me/9779769360688" target="_blank">Contact Us
-                                        On <i class="fa-brands fa-whatsapp"></i></a>
-                                    <a class="ms-lg-4 ms-md-4 my-lg-0 my-md-0 m-3" href="tel:+9779769360688">+977
-                                        9769360688</a>
+                                    @if ($about)
+                                        <p> {!! Str::limit($about->description, 300) !!} </p>
+                                    @else
+                                        <p>No data available.</p>
+                                    @endif
                                 </div>
+                                @if ($contactInfo)
+                                    <div class="what-app d-flex flex-wrap align-items-center">
+                                        <a class="whatapp-btn" href="https://wa.me/977{{ $contactInfo->phone }}"
+                                            target="_blank">Contact Us
+                                            On <i class="fa-brands fa-whatsapp"></i></a>
+                                        <a class="ms-lg-4 ms-md-4 my-lg-0 my-md-0 m-3"
+                                            href="tel:+977{{ $contactInfo->phone }}">+977
+                                            {{ $contactInfo->phone }}</a>
+                                    </div>
+                                @else
+                                    <p>No contact information found. <a href="{{ route('contact-info.create') }}">Create
+                                            New</a></p>
+                                @endif
+
 
                             </div>
                         </div>
@@ -57,26 +64,25 @@
             </div>
 
             <div class="container">
-                <div class="about mt-lg-4" id="about">
+                <div class="about mt-4" id="about">
                     <div class="row">
-                        <div class="col-lg-4 col-md-6" id="gallery">
-
-                            <a href="{{ asset('bakers/images/menu.jpg') }}" data-caption="Image #1">
-                                <img height="300px" src="{{ asset('bakers/images/menu.jpg') }}" />
-                            </a>
-
-                        </div>
-                        <div class="col-lg-8">
-                            <h3 class="py-3"> <strong>Baker's Gallery</strong> <span>Pizza and Pasta Bar</span>
-
-                            </h3>
-                            <p> Bakers Gallery is a delightful cafe known for its variety of delicious offerings.
-                                Specializing in mouthwatering burgers, flavorful momos, savory chow mein, and freshly
-                                baked pizzas, it caters to every craving. Whether you're looking for a quick snack or a
-                                satisfying meal, Bakers Gallery serves up a menu that's sure to please, with delivery
-                                services available to bring your favorite dishes right to your door!</p>
-                        </div>
+                        @if ($about)
+                            <div class="col-lg-4 col-md-6" id="gallery">
+                                <a href="{{ asset('storage/' . $about->image) }}" data-caption="Image #1">
+                                    <img height="300px" src="{{ asset('storage/' . $about->image) }}" />
+                                </a>
+                            </div>
+                            <div class="col-lg-8">
+                                <h3 class="py-3"> <strong>Baker's Gallery</strong> <span>Pizza and Pasta Bar</span>
+                                </h3>
+                                <h4>{{ $about->title }}</h4>
+                                <p> {!! $about->description !!}</p>
+                            </div>
+                        @else
+                            <p>No data available.</p>
+                        @endif
                     </div>
+
                 </div>
                 <div class="text-center title-top " id="photo-gallery">
                     <h1 class=" my-4 my-lg-5"> PHOTO <span>GALLERY</span>
@@ -84,36 +90,16 @@
                 </div>
                 <div id="gallery" class="mt-4">
                     <div class="row g-4">
-                        <div class="col-lg-4 col-md-6">
-                            <a href="{{ asset('bakers/images/menu.jpg') }}" data-caption="Image #1">
-                                <img height="300px" src="{{ asset('bakers/images/menu.jpg') }}" />
-                            </a>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <a href="{{ asset('bakers/images/menu.jpg') }}" data-caption="Image #1">
-                                <img height="300px" src="{{ asset('bakers/images/menu.jpg') }}" />
-                            </a>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <a href="{{ asset('bakers/images/chowmin.jpg') }}" data-caption="Image #2">
-                                <img src="{{ asset('bakers/images/chowmin.jpg') }}" />
-                            </a>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <a href="{{ asset('bakers/images/Cold-Coffee-2-3.jpg') }}" data-caption="Image #2">
-                                <img src="{{ asset('bakers/images/Cold-Coffee-2-3.jpg') }}" />
-                            </a>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <a href="{{ asset('bakers/images/ice-coffee.jpg') }}" data-caption="Image #2">
-                                <img src="{{ asset('bakers/images/ice-coffee.jpg') }}" />
-                            </a>
-                        </div>
-                        <div class="col-lg-4 col-md-6">
-                            <a href="{{ asset('bakers/images/bg.jpg') }}" data-caption="Image #2">
-                                <img src="{{ asset('bakers/images/bg.jpg') }}" />
-                            </a>
-                        </div>
+                        @foreach ($gallery as $gallery)
+                            <div class="col-lg-4 col-md-6">
+                                <a href="{{ asset('storage/' . $gallery->image_path) }}"
+                                    data-caption="{{ $about->title }}">
+                                    <img height="300px" src="{{ asset('storage/' . $gallery->image_path) }}" />
+                                </a>
+                            </div>
+                        @endforeach
+
+
                     </div>
                 </div>
                 <div class="text-center title-top ">
@@ -121,341 +107,56 @@
                     </h1>
                 </div>
                 <div class="menu mt-4">
+                    @foreach ($categories as $category)
+                        <h1 class="mb-4">{{ strtoupper($category->name) }}</h1>
 
-                    <h1 class=" mb-4 "> SNACKS
-                    </h1>
-                    <p>
-                        (Our house made soup and Chowder are Gluten free,
-                        Swap for Gluten-free bread roll $3)</p>
-                    <div class="row g-5">
-                        <div class="col-lg-6">
-                            <div class="menu__details my-2">
-                                <div class="menu__title d-flex justify-content-between align-items-center dotted-line">
-                                    <h3 class="text-uppercase">
-                                        Chicken Momo
-                                    </h3>
-                                    <div class="price">
-                                        RS. 150
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div class="menu__details my-2">
-                                <div class="menu__title d-flex justify-content-between align-items-center dotted-line">
-                                    <h3 class="text-uppercase">
-                                        Chicken Sandwich
-                                    </h3>
-                                    <div class="price">
-                                        RS. 120
+                        <div class="row g-5">
+                            <div class="col-lg-6">
+                                @foreach ($category->products as $product)
+                                    <div class="menu__details my-2">
+                                        <div
+                                            class="menu__title d-flex justify-content-between align-items-center dotted-line">
+                                            <h3 class="text-uppercase">{{ $product->name }}</h3>
+                                            <div class="price">RS. {{ $product->price }}</div>
+                                        </div>
                                     </div>
-                                </div>
+                                @endforeach
                             </div>
-                            <div class="menu__details my-2">
-                                <div class="menu__title d-flex justify-content-between align-items-center dotted-line">
-                                    <h3 class="text-uppercase">
-                                        Veg Paneer Momo
-                                    </h3>
-                                    <div class="price">
-                                        RS. 140
-                                    </div>
-                                </div>
+                            <div class="col-lg-6 px-lg-5">
+                                <!-- You can add an image for the category here if needed -->
+                                <img src="{{ asset('storage/' . $category->image) }}" style="width: 100%;" />
                             </div>
-                            <div class="menu__details my-2">
-                                <div class="menu__title d-flex justify-content-between align-items-center dotted-line">
-                                    <h3 class="text-uppercase">
-                                        Chicken Chowmein
-                                    </h3>
-                                    <div class="price">
-                                        RS. 140
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="menu__details my-2">
-                                <div class="menu__title d-flex justify-content-between align-items-center dotted-line">
-                                    <h3 class="text-uppercase">
-                                        Burger-Chicken /veg
-                                    </h3>
-                                    <div class="price">
-                                        RS. 120
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="menu__details my-2">
-                                <div class="menu__title d-flex justify-content-between align-items-center dotted-line">
-                                    <h3 class="text-uppercase">
-                                        Burger-Chicken /veg
-                                    </h3>
-                                    <div class="price">
-                                        RS. 120
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="menu__details my-2">
-                                <div class="menu__title d-flex justify-content-between align-items-center dotted-line">
-                                    <h3 class="text-uppercase">
-                                        veg Sandwich
-                                    </h3>
-                                    <div class="price">
-                                        RS. 80 &nbsp;
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="menu__details my-2">
-                                <div class="menu__title d-flex justify-content-between align-items-center dotted-line">
-                                    <h3 class="text-uppercase">
-                                        Chicken pizza
-                                    </h3>
-                                    <div class="price">
-                                        RS. 200
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="menu__details my-2">
-                                <div class="menu__title d-flex justify-content-between align-items-center dotted-line">
-                                    <h3 class="text-uppercase">
-                                        cheese pizza
-                                    </h3>
-                                    <div class="price">
-                                        RS. 160
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="menu__details my-2">
-                                <div class="menu__title d-flex justify-content-between align-items-center dotted-line">
-                                    <h3 class="text-uppercase">
-                                        Veg pizza
-                                    </h3>
-                                    <div class="price">
-                                        RS. 160
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="menu__details my-2">
-                                <div class="menu__title d-flex justify-content-between align-items-center dotted-line">
-                                    <h3 class="text-uppercase">
-                                        chicken sausage
-                                    </h3>
-                                    <div class="price">
-                                        RS. 40 &nbsp;
-                                    </div>
-                                </div>
-                            </div>
-
                         </div>
-                        <div class="col-lg-6 px-lg-5">
-                            <img src="{{ asset('bakers/images/snacks.jpg') }}" style="width: 100%;" />
-                        </div>
-                    </div>
-                    <h1 class=" my-4 "> TEA & COFFEE
-                    </h1>
-                    <p>
-                        (Our house made soup and Chowder are Gluten free,
-                        Swap for Gluten-free bread roll $3)</p>
-                    <div class="row g-5">
-                        <div class="col-lg-6">
-                            <div class="menu__details my-2">
-                                <div class="menu__title d-flex justify-content-between align-items-center dotted-line">
-                                    <h3 class="text-uppercase">
-                                        MAsala tea
-                                    </h3>
-                                    <div class="price">
-                                        RS. 40
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="menu__details my-2">
-                                <div class="menu__title d-flex justify-content-between align-items-center dotted-line">
-                                    <h3 class="text-uppercase">
-                                        special masala tea
-                                    </h3>
-                                    <div class="price">
-                                        RS. 50
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="menu__details my-2">
-                                <div class="menu__title d-flex justify-content-between align-items-center dotted-line">
-                                    <h3 class="text-uppercase">
-                                        coconut tea
-                                    </h3>
-                                    <div class="price">
-                                        RS. 60
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="menu__details my-2">
-                                <div class="menu__title d-flex justify-content-between align-items-center dotted-line">
-                                    <h3 class="text-uppercase">
-                                        clack tea
-                                    </h3>
-                                    <div class="price">
-                                        RS. 30
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="menu__details my-2">
-                                <div class="menu__title d-flex justify-content-between align-items-center dotted-line">
-                                    <h3 class="text-uppercase">
-                                        lemon tea
-                                    </h3>
-                                    <div class="price">
-                                        RS. 35
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="menu__details my-2">
-                                <div class="menu__title d-flex justify-content-between align-items-center dotted-line">
-                                    <h3 class="text-uppercase">
-                                        hot tea
-                                    </h3>
-                                    <div class="price">
-                                        RS. 40
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="menu__details my-2">
-                                <div class="menu__title d-flex justify-content-between align-items-center dotted-line">
-                                    <h3 class="text-uppercase">
-                                        black coffee
-                                    </h3>
-                                    <div class="price">
-                                        RS. 60
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="menu__details my-2">
-                                <div class="menu__title d-flex justify-content-between align-items-center dotted-line">
-                                    <h3 class="text-uppercase">
-                                        milk coffee
-                                    </h3>
-                                    <div class="price">
-                                        RS. 80
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-lg-6 px-lg-5">
-
-
-                            <img src="{{ asset('bakers/images/tea-coffee.jpg') }}" class="menu-img" />
-
-
-                        </div>
-
-
-
-
-                    </div>
-                    <h1 class=" my-4 "> COLD BEVERAGE
-                    </h1>
-                    <p>
-                        (Our house made soup and Chowder are Gluten free,
-                        Swap for Gluten-free bread roll $3)</p>
-                    <div class="row g-5">
-                        <div class="col-lg-6">
-                            <div class="menu__details my-2">
-                                <div class="menu__title d-flex justify-content-between align-items-center dotted-line">
-                                    <h3 class="text-uppercase">
-                                        cold drink
-                                    </h3>
-                                    <div class="price">
-                                        RS. 70 &nbsp;
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="menu__details my-2">
-                                <div class="menu__title d-flex justify-content-between align-items-center dotted-line">
-                                    <h3 class="text-uppercase">
-                                        iced tea
-                                    </h3>
-                                    <div class="price">
-                                        RS. 60 &nbsp;
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="menu__details my-2">
-                                <div class="menu__title d-flex justify-content-between align-items-center dotted-line">
-                                    <h3 class="text-uppercase">
-                                        mojito
-                                    </h3>
-                                    <div class="price">
-                                        RS. 100
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="menu__details my-2">
-                                <div class="menu__title d-flex justify-content-between align-items-center dotted-line">
-                                    <h3 class="text-uppercase">
-                                        cold coffee black
-                                    </h3>
-                                    <div class="price">
-                                        RS. 80 &nbsp;
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="menu__details my-2">
-                                <div class="menu__title d-flex justify-content-between align-items-center dotted-line">
-                                    <h3 class="text-uppercase">
-                                        cold coffee milk
-                                    </h3>
-                                    <div class="price">
-                                        RS. 110
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="menu__details my-2">
-                                <div class="menu__title d-flex justify-content-between align-items-center dotted-line">
-                                    <h3 class="text-uppercase">
-                                        green tea
-                                    </h3>
-                                    <div class="price">
-                                        RS. 35 &nbsp
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-lg-6 px-lg-5">
-
-
-                            <img src="{{ asset('bakers/images/soft-drinks.jpg') }}" style="width: 100%;"
-                                class="menu-img1" />
-
-
-                        </div>
-
-
-
-
-                    </div>
+                    @endforeach
                 </div>
-                <div class="contact-form-part bg-white p-4 mt-4 rounded">
+
+                <div class="menu contact-form-part  p-4 mt-4 rounded" id="ContactUS">
                     <div class=" title-top ">
                         <h1 class="" id="menu"> CONTACT <span>US</span>
                         </h1>
+
                     </div>
                     <div class="row">
-                        <form class="row g-3">
+                        <form action="{{ route('messages.store') }}" method="POST" class="row g-3">
+                            @csrf <!-- Include CSRF token for security -->
                             <div class="col-md-6">
-                              <label for="inputEmail4" class="form-label text-white ">Email</label>
-                              <input type="email" class="form-control" id="inputEmail4">
+                                <label for="inputEmail4" class="form-label text-white">Email</label>
+                                <input type="email" name="email" class="form-control" id="inputEmail4" required>
                             </div>
                             <div class="col-md-6">
-                              <label for="phoneNumber" class="form-label text-white ">Phone</label>
-                              <input type="number" class="form-control" id="phoneNumber">
+                                <label for="phoneNumber" class="form-label text-white">Phone</label>
+                                <input type="number" name="phone" class="form-control" id="phoneNumber" required>
                             </div>
                             <div class="col-12">
-                              <label for="messager" class="form-label text-white ">Message</label>
-                              <textarea class="form-control" id="messager" rows="3"></textarea>
+                                <label for="messager" class="form-label text-white">Message</label>
+                                <textarea name="message" class="form-control" id="messager" rows="3" required></textarea>
                             </div>
-                           
                             <div class="col-12">
-                              <button type="submit" class="btn  btn-submit">Sign in</button>
+                                <button type="submit" class="btn btn-submit">Send Message</button>
                             </div>
-                          </form>
+                        </form>
+
                     </div>
                 </div>
 
@@ -478,6 +179,65 @@
             </div>
         </div>
     </a>
+    <!-- Bootstrap Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="successModalLabel">Success</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <i class="fas fa-paper-plane fa-3x text-success mb-3"></i> <!-- Send Icon -->
+                    @if (session('success'))
+                        <p>{{ session('success') }}</p>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <style>
+        /* Animation for the modal */
+        .modal.fade .modal-dialog {
+            transform: translate(0, -25%);
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+    
+        .modal.show .modal-dialog {
+            transform: translate(0, 0);
+            opacity: 1;
+        }
+    
+        /* Animation for the icon */
+        .fa-paper-plane {
+            animation: bounce 0.5s infinite;
+        }
+    
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            @if (session('success'))
+                var successModal = new bootstrap.Modal(document.getElementById('successModal'));
+                successModal.show();
+    
+                setTimeout(function () {
+                    successModal.hide();
+                }, 3000);
+            @endif
+        });
+    </script>
+
 
 
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
@@ -489,6 +249,7 @@
             groupAll: true,
         });
     </script>
+
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {

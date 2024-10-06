@@ -12,7 +12,7 @@
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
-                <textarea name="description" id="editor" class="form-control" required></textarea>
+                <textarea name="description" id="editor" class="form-control" ></textarea>
                
             </div>
             <div class="mb-3">

@@ -8,5 +8,5 @@
 <div class="login ms-3"><a href="#menu"> <i class="fa-regular fa-floppy-disk"></i> Menu</a>
 </div>
 
-<div class="login ms-3"><a href="#"> <i class="fa-regular fa-address-card"></i> Contact Us</a>
+<div class="login ms-3"><a href="#ContactUS"> <i class="fa-regular fa-address-card"></i> Contact Us</a>
 </div>

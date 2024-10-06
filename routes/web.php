@@ -11,7 +11,8 @@ use App\Http\Controllers\GalleryController;
 
 use App\Http\Controllers\ServiceCategoryController;
 use App\Http\Controllers\ServiceProductController;
-
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\MessageController;
 
 // routes/web.php
 use App\Http\Controllers\ContactInfoController;
@@ -20,14 +21,15 @@ use App\Http\Controllers\ContactInfoController;
 
 use Illuminate\Support\Facades\Route;
 
-
-Route::get('/', function () {
-    return view('users/user-dashboard');
-});
+Route::get('/', [UserController::class, 'index']);
 
 Route::get('/dashboard', function () {
     return view('admin/index');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+
+Route::post('/messages', [MessageController::class, 'store'])->name('messages.store');
+
 
 Route::middleware(['auth'])->group(function () {
    
@@ -38,11 +40,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('gallery', GalleryController::class);
     Route::resource('contact-info', ContactInfoController::class);
     Route::resource('service-categories', ServiceCategoryController::class);
-
     Route::resource('service-products', ServiceProductController::class);
-
-
-
+    Route::get('/messages', [AdminController::class, 'Message'])->name('messages.index');
 
 });
 

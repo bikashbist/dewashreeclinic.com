@@ -16,7 +16,7 @@
             <li><a class="toggle-button" href="#photo-gallery"><img src="{{asset('bakers/images/Header-Home-Icon-2.svg')}} "
                         alt="icon">Gallery</a>
             </li>
-            <li><a class="toggle-button" href="#contact-us"><img src="{{asset('bakers/images/Header-Home-Icon-5.svg')}} "
+            <li><a class="toggle-button" href="#ContactUS"><img src="{{asset('bakers/images/Header-Home-Icon-5.svg')}} "
                         alt="icon">Contact Us</a>
             </li>
         </ul>

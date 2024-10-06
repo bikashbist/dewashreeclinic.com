@@ -69,6 +69,12 @@
                         <span>Service Products</span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{ route('messages.index') }}" class="waves-effect">
+                        <i class="ri-gallery-line"></i>
+                        <span>Messages</span>
+                    </a>
+                </li>
                
 
 
