@@ -13,6 +13,7 @@ use App\Http\Controllers\ServiceCategoryController;
 use App\Http\Controllers\ServiceProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\AdvertisementController;
 
 // routes/web.php
 use App\Http\Controllers\ContactInfoController;
@@ -50,6 +51,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('service-products', ServiceProductController::class);
     Route::get('/messages', [AdminController::class, 'Message'])->name('messages.index');
     Route::resource('banner', BannerController::class);
+    Route::resource('advertisements', AdvertisementController::class);
+
 
 });
 

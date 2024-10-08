@@ -81,6 +81,12 @@
                         <span>Messages</span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{ route('advertisements.index') }}" class="waves-effect">
+                        <i class="ri-gallery-line"></i>
+                        <span>Advertisements</span>
+                    </a>
+                </li>
                
 
 
