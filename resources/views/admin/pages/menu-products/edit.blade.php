@@ -1,10 +1,9 @@
-
 @extends('admin.admin-dashboard')
 @section('content')
 <div class="row">
     <div class="col-12">
         <h4>Edit Menu Product</h4>
-        <form action="{{ route('menu-products.update', $menuProduct->id) }}" method="POST">
+        <form action="{{ route('menu-products.update', $menuProduct->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="mb-3">
@@ -22,6 +21,13 @@
             <div class="mb-3">
                 <label for="price" class="form-label">Product Price</label>
                 <input type="number" step="0.01" name="price" id="price" class="form-control" value="{{ $menuProduct->price }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="image" class="form-label">Product Image</label>
+                <input type="file" name="image" id="image" class="form-control" accept="image/*">
+                @if($menuProduct->image)
+                    <img src="{{ asset('storage/' . $menuProduct->image) }}" alt="{{ $menuProduct->name }}" width="100">
+                @endif
             </div>
             <button type="submit" class="btn btn-success">Update</button>
         </form>

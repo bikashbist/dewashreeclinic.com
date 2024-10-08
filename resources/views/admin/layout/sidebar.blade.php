@@ -40,6 +40,12 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{ route('banner.index') }}" class="waves-effect">
+                        <i class="ri-information-line"></i>
+                        <span>Banner</span>
+                    </a>
+                </li>
+                <li>
                     <a href="{{ route('about-us.index') }}" class="waves-effect">
                         <i class="ri-information-line"></i>
                         <span>About Us</span>

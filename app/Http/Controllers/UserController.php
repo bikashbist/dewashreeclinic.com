@@ -17,7 +17,27 @@ class UserController extends Controller
         $gallery = Gallery::all();
         $categories = MenuCategory::with('products')->get();
         
-        return view('users/user-dashboard', compact('about', 'contactInfo','gallery','categories'));
+        return view('users.index', compact('about', 'contactInfo','gallery','categories'));
+    }
+    public function about() {
+        $data = AboutUs::first();
+        return view('users.pages.about',);
+
+    }
+    public function shop() {
+        $data = AboutUs::first();
+        return view('users.pages.shop',);
+
+    }
+    public function services() {
+        $data = AboutUs::first();
+        return view('users.pages.services',);
+
+    }
+    public function contact() {
+        $data = AboutUs::first();
+        return view('users.pages.contact',);
+
     }
     
 }

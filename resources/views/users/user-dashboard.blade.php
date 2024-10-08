@@ -4,325 +4,383 @@
 
 @include('users.layout.head')
 
-<body class="position-relative">
 
-    <div class="overlay"></div>
+<div class="body-wrapper">
 
-    <div class="main">
+    @include('users.layout.header')
 
-        <button class="toggle-button btn-menu d-flex align-items-center justify-content-center"> ☰</button>
-        @include('users.layout.mobile-navbar')
-      
-        <div class="content" id="home">
-            <div class="banner d-flex justify-content-center align-items-center">
-                <video autoplay muted loop playsinline>
-                    <source src="https://yummie.wpengine.com/wp-content/uploads/2024/03/vd-2.mp4" type="video/mp4">
+    @include('users.layout.mobile-menu')
 
-                </video>
-                <div class="container ">
-                    <div class="login-cart py-3 d-flex align-items-center">
-                        <!-- <button class="toggle-button d-flex align-items-center justify-content-center me-2">☰</button> -->
 
-                        @include('users.layout.desktop-navbar')
+    <div class="ltn__utilize-overlay"></div>
+
+    @yield('content')
+    <!-- CALL TO ACTION START (call-to-action-6) -->
+    <div class="ltn__call-to-action-area call-to-action-6 before-bg-bottom" data-bs-bg="img/1.jpg--">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div
+                        class="call-to-action-inner call-to-action-inner-6 ltn__secondary-bg position-relative text-center---">
+                        <div class="coll-to-info text-color-white">
+                            <h1>Buy medical disposable face mask <br> to protect your loved ones</h1>
+                        </div>
+                        <div class="btn-wrapper bg-white p-3">
+                            <div class="header-feature-item ">
+                                <div class="header-feature-icon">
+                                    <i class="fa-brands fa-whatsapp fs-1 text-success"></i>
+                                </div>
+                                <div class="header-feature-info">
+                                    <h6>Phone</h6>
+                                    <p><a href="tel:9767920300">+977-9767920300</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- CALL TO ACTION END -->
+    <!-- FOOTER AREA START -->
+    <footer class="ltn__footer-area  ">
+        <div class="footer-top-area  section-bg-2 plr--5">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-xl-6 col-md-6 col-sm-6 col-12">
+                        <div class="footer-widget footer-about-widget">
+                            <div class="footer-logo">
+                                <div class="site-logo">
+                                    <img src="{{asset('users/img/Dewashree.png')}} " alt="logo" height="80px"
+                                        style="object-fit: contain;">
+                                </div>
+                            </div>
+                            <p>Dewashree Medical Clinic is a trusted medical pharmacy located in the heart of
+                                Sankhamul, Kathmandu, dedicated to offering a comprehensive range of pharmaceutical
+                                services and healthcare products.</p>
+
+                        </div>
                     </div>
 
-                    <div class="banner__details">
-                        <div class="container">
-                            <!-- <img src="{{ asset('bakers/images/menu.jpg') }}logo.jpg" alt="logo" width="170"> <br> -->
+                    <div class="col-xl-4 col-md-6 col-sm-6 col-12">
+                        <div class="footer-widget footer-menu-widget clearfix">
+                            <h4 class="footer-title">Contact Us</h4>
 
-                            <div class="w-50">
-                                <span> Welcome to Bakers's Gallery! </span>
-                                <h1>Great Tasting Cafe </h1>
-                                <div class="py-4">
+                            <div class="footer-address">
+                                <ul>
+                                    <li>
+                                        <div class="footer-address-icon">
+                                            <i class="icon-placeholder"></i>
+                                        </div>
+                                        <div class="footer-address-info">
+                                            <p>Kathmandu, Gokarneshwor -8, Atterkhel</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="footer-address-icon">
+                                            <i class="icon-call"></i>
+                                        </div>
+                                        <div class="footer-address-info">
+                                            <p><a href="tel:+977-9767920300">+977-9767920300</a></p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="footer-address-icon">
+                                            <i class="icon-mail"></i>
+                                        </div>
+                                        <div class="footer-address-info">
+                                            <p><a
+                                                    href="mailto:dewashreeclinic@gmail.com">dewashreeclinic@gmail.com</a>
+                                            </p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="ltn__social-media mt-20">
+                                <ul>
+                                    <li><a class="text-white" href="#" title="Facebook"><i
+                                                class="fab fa-facebook-f"></i></a></li>
+                            
 
-                                    @if ($about)
-                                        <p> {!! Str::limit($about->description, 300) !!} </p>
-                                    @else
-                                        <p>No data available.</p>
-                                    @endif
-                                </div>
-                                @if ($contactInfo)
-                                    <div class="what-app d-flex flex-wrap align-items-center">
-                                        <a class="whatapp-btn" href="https://wa.me/977{{ $contactInfo->phone }}"
-                                            target="_blank">Contact Us
-                                            On <i class="fa-brands fa-whatsapp"></i></a>
-                                        <a class="ms-lg-4 ms-md-4 my-lg-0 my-md-0 m-3"
-                                            href="tel:+977{{ $contactInfo->phone }}">+977
-                                            {{ $contactInfo->phone }}</a>
-                                    </div>
-                                @else
-                                    <p>No contact information found. <a href="{{ route('contact-info.create') }}">Create
-                                            New</a></p>
-                                @endif
+                                    <li><a class="text-white" href="#" title="Instagram"><i
+                                                class="fab fa-instagram"></i></a></li>
+                                    <li><a class="text-white" href="#" title="Viber"><i
+                                                class="fab fa-viber"></i></a>
+                                    </li>
 
 
                             </div>
                         </div>
+                    </div>
 
+                    <!-- <div class="col-xl-3 col-md-6 col-sm-12 col-12">
+                        <div class="footer-widget footer-newsletter-widget">
+                            <h4 class="footer-title">Newsletter</h4>
+                            <p>Subscribe to our weekly Newsletter and receive updates via email.</p>
+                            <div class="footer-newsletter">
+                                <form action="#">
+                                    <input type="email" name="email" placeholder="Email*">
+                                    <div class="btn-wrapper">
+                                        <button class="theme-btn-1 btn" type="submit"><i
+                                                class="fas fa-location-arrow"></i></button>
+                                    </div>
+                                </form>
+                            </div>
+                            <h5 class="mt-30">We Accept</h5>
+                            <img src="img/icons/payment-4.png" alt="Payment Image">
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+        <div class="ltn__copyright-area ltn__copyright-2 section-bg-7  plr--5">
+            <div class="container-fluid ltn__border-top-2">
+                <div class="row">
+                    <div class="col-md-6 col-12">
+                        <div class="ltn__copyright-design clearfix">
+                            <p>All Rights Reserved @ Company <span class="current-year"></span></p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-12 align-self-center">
+                        <div class="ltn__copyright-menu text-end">
+                            <ul>
+                                <li><a href="#">Terms & Conditions</a></li>
+                                <li><a href="#">Claim</a></li>
+                                <li><a href="#">Privacy & Policy</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </footer>
+    <!-- FOOTER AREA END -->
 
-            <div class="container">
-                <div class="about mt-4" id="about">
-                    <div class="row">
-                        @if ($about)
-                            <div class="col-lg-4 col-md-6" id="gallery">
-                                <a href="{{ asset('storage/' . $about->image) }}" data-caption="Image #1">
-                                    <img height="300px" src="{{ asset('storage/' . $about->image) }}" />
-                                </a>
-                            </div>
-                            <div class="col-lg-8">
-                                <h3 class="py-3"> <strong>Baker's Gallery</strong> <span>Pizza and Pasta Bar</span>
-                                </h3>
-                                <h4>{{ $about->title }}</h4>
-                                <p> {!! $about->description !!}</p>
-                            </div>
-                        @else
-                            <p>No data available.</p>
-                        @endif
+    <!-- MODAL AREA START (Quick View Modal) -->
+    <div class="ltn__modal-area ltn__quick-view-modal-area">
+        <div class="modal fade" id="quick_view_modal" tabindex="-1">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            <!-- <i class="fas fa-times"></i> -->
+                        </button>
                     </div>
-
-                </div>
-                <div class="text-center title-top " id="photo-gallery">
-                    <h1 class=" my-4 my-lg-5"> PHOTO <span>GALLERY</span>
-                    </h1>
-                </div>
-                <div id="gallery" class="mt-4">
-                    <div class="row g-4">
-                        @foreach ($gallery as $gallery)
-                            <div class="col-lg-4 col-md-6">
-                                <a href="{{ asset('storage/' . $gallery->image_path) }}"
-                                    data-caption="{{ $about->title }}">
-                                    <img height="300px" src="{{ asset('storage/' . $gallery->image_path) }}" />
-                                </a>
-                            </div>
-                        @endforeach
-
-
-                    </div>
-                </div>
-                <div class="text-center title-top ">
-                    <h1 class=" my-4 my-lg-5" id="menu"> OUR SPECIAL <span>MENU</span>
-                    </h1>
-                </div>
-                <div class="menu mt-4">
-                    @foreach ($categories as $category)
-                        <h1 class="mb-4">{{ strtoupper($category->name) }}</h1>
-
-
-                        <div class="row g-5">
-                            <div class="col-lg-6">
-                                @foreach ($category->products as $product)
-                                    <div class="menu__details my-2">
-                                        <div
-                                            class="menu__title d-flex justify-content-between align-items-center dotted-line">
-                                            <h3 class="text-uppercase">{{ $product->name }}</h3>
-                                            <div class="price">RS. {{ $product->price }}</div>
+                    <div class="modal-body">
+                        <div class="ltn__quick-view-modal-inner">
+                            <div class="modal-product-item">
+                                <div class="row">
+                                    <div class="col-lg-6 col-12">
+                                        <div class="modal-product-img">
+                                            <img src="img/product/4.png" alt="#">
                                         </div>
                                     </div>
-                                @endforeach
-                            </div>
-                            <div class="col-lg-6 px-lg-5">
-                                <!-- You can add an image for the category here if needed -->
-                                <img src="{{ asset('storage/' . $category->image) }}" style="width: 100%;" />
+                                    <div class="col-lg-6 col-12">
+                                        <div class="modal-product-info">
+                                            <div class="product-ratting">
+                                                <ul>
+                                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                                    <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
+                                                    <li><a href="#"><i class="far fa-star"></i></a></li>
+                                                    <li class="review-total"> <a href="#"> ( 95 Reviews )</a></li>
+                                                </ul>
+                                            </div>
+                                            <h3>Digital Stethoscope</h3>
+                                            <div class="product-price">
+                                                <span>$149.00</span>
+                                                <del>$165.00</del>
+                                            </div>
+                                            <div class="modal-product-meta ltn__product-details-menu-1">
+                                                <ul>
+                                                    <li>
+                                                        <strong>Categories:</strong>
+                                                        <span>
+                                                            <a href="#">Parts</a>
+                                                            <a href="#">Car</a>
+                                                            <a href="#">Seat</a>
+                                                            <a href="#">Cover</a>
+                                                        </span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="ltn__product-details-menu-2">
+                                                <ul>
+                                                    <li>
+                                                        <div class="cart-plus-minus">
+                                                            <input type="text" value="02" name="qtybutton"
+                                                                class="cart-plus-minus-box">
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="theme-btn-1 btn btn-effect-1"
+                                                            title="Add to Cart" data-bs-toggle="modal"
+                                                            data-bs-target="#add_to_cart_modal">
+                                                            <i class="fas fa-shopping-cart"></i>
+                                                            <span>ADD TO CART</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="ltn__product-details-menu-3">
+                                                <ul>
+                                                    <li>
+                                                        <a href="#" class="" title="Wishlist" data-bs-toggle="modal"
+                                                            data-bs-target="#liton_wishlist_modal">
+                                                            <i class="far fa-heart"></i>
+                                                            <span>Add to Wishlist</span>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#" class="" title="Compare" data-bs-toggle="modal"
+                                                            data-bs-target="#quick_view_modal">
+                                                            <i class="fas fa-exchange-alt"></i>
+                                                            <span>Compare</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <hr>
+                                            <div class="ltn__social-media">
+                                                <ul>
+                                                    <li>Share:</li>
+                                                    <li><a href="#" title="Facebook"><i
+                                                                class="fab fa-facebook-f"></i></a></li>
+                                                    <li><a href="#" title="Twitter"><i
+                                                                class="fab fa-twitter"></i></a></li>
+                                                    <li><a href="#" title="Linkedin"><i
+                                                                class="fab fa-linkedin"></i></a></li>
+                                                    <li><a href="#" title="Instagram"><i
+                                                                class="fab fa-instagram"></i></a></li>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    @endforeach
-                </div>
-
-                <div class="menu contact-form-part  p-4 mt-4 rounded" id="ContactUS">
-                    <div class=" title-top ">
-                        <h1 class="" id="menu"> CONTACT <span>US</span>
-                        </h1>
-
                     </div>
-                    <div class="row">
-                        <form action="{{ route('messages.store') }}" method="POST" class="row g-3">
-                            @csrf <!-- Include CSRF token for security -->
-                            <div class="col-md-6">
-                                <label for="inputEmail4" class="form-label text-white">Email</label>
-                                <input type="email" name="email" class="form-control" id="inputEmail4" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="phoneNumber" class="form-label text-white">Phone</label>
-                                <input type="number" name="phone" class="form-control" id="phoneNumber" required>
-                            </div>
-                            <div class="col-12">
-                                <label for="messager" class="form-label text-white">Message</label>
-                                <textarea name="message" class="form-control" id="messager" rows="3" required></textarea>
-                            </div>
-                            <div class="col-12">
-                                <button type="submit" class="btn btn-submit">Send Message</button>
-                            </div>
-                        </form>
-
-                    </div>
-                </div>
-
-            </div>
-            <div class="footer mt-4">
-                <p>© Baker's Gallery. All rights reserved. Designed and developed by <a class="text-warning"
-                        href="https://www.facebook.com/bikas.bist.96" target="_blank">Bikash Bist</a>.</p>
-            </div>
-
-
-        </div>
-
-
-    </div>
-    <a href="#home">
-        <div class="got-to-top" id="goToTop">
-            <div class="icon">
-                <i class="fa-solid fa-jet-fighter-up"></i>
-
-            </div>
-        </div>
-    </a>
-    <!-- Bootstrap Modal -->
-    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="successModalLabel">Success</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center">
-                    <i class="fas fa-paper-plane fa-3x text-success mb-3"></i> <!-- Send Icon -->
-                    @if (session('success'))
-                        <p>{{ session('success') }}</p>
-                    @endif
                 </div>
             </div>
         </div>
     </div>
-    
-    <style>
-        /* Animation for the modal */
-        .modal.fade .modal-dialog {
-            transform: translate(0, -25%);
-            opacity: 0;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-    
-        .modal.show .modal-dialog {
-            transform: translate(0, 0);
-            opacity: 1;
-        }
-    
-        /* Animation for the icon */
-        .fa-paper-plane {
-            animation: bounce 0.5s infinite;
-        }
-    
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-    </style>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            @if (session('success'))
-                var successModal = new bootstrap.Modal(document.getElementById('successModal'));
-                successModal.show();
-    
-                setTimeout(function () {
-                    successModal.hide();
-                }, 3000);
-            @endif
-        });
-    </script>
+    <!-- MODAL AREA END -->
+
+    <!-- MODAL AREA START (Add To Cart Modal) -->
+    <div class="ltn__modal-area ltn__add-to-cart-modal-area">
+        <div class="modal fade" id="add_to_cart_modal" tabindex="-1">
+            <div class="modal-dialog modal-md" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="ltn__quick-view-modal-inner">
+                            <div class="modal-product-item">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="modal-product-img">
+                                            <img src="img/product/1.png" alt="#">
+                                        </div>
+                                        <div class="modal-product-info">
+                                            <h5><a href="product-details.html">Digital Stethoscope</a></h5>
+                                            <p class="added-cart"><i class="fa fa-check-circle"></i> Successfully
+                                                added to your Cart</p>
+                                            <div class="btn-wrapper">
+                                                <a href="cart.html" class="theme-btn-1 btn btn-effect-1">View
+                                                    Cart</a>
+                                                <a href="checkout.html"
+                                                    class="theme-btn-2 btn btn-effect-2">Checkout</a>
+                                            </div>
+                                        </div>
+                                        <!-- additional-info -->
+                                        <div class="additional-info d-none">
+                                            <p>We want to give you <b>10% discount</b> for your first order, <br>
+                                                Use discount code at checkout</p>
+                                            <div class="payment-method">
+                                                <img src="img/icons/payment.png" alt="#">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- MODAL AREA END -->
+
+    <!-- MODAL AREA START (Wishlist Modal) -->
+    <div class="ltn__modal-area ltn__add-to-cart-modal-area">
+        <div class="modal fade" id="liton_wishlist_modal" tabindex="-1">
+            <div class="modal-dialog modal-md" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="ltn__quick-view-modal-inner">
+                            <div class="modal-product-item">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="modal-product-img">
+                                            <img src="img/product-2/7.png" alt="#">
+                                        </div>
+                                        <div class="modal-product-info">
+                                            <h5><a href="product-details.html">Digital Stethoscope</a></h5>
+                                            <p class="added-cart"><i class="fa fa-check-circle"></i> Successfully
+                                                added to your Wishlist</p>
+                                            <div class="btn-wrapper">
+                                                <a href="wishlist.html" class="theme-btn-1 btn btn-effect-1">View
+                                                    Wishlist</a>
+                                            </div>
+                                        </div>
+                                        <!-- additional-info -->
+                                        <div class="additional-info d-none">
+                                            <p>We want to give you <b>10% discount</b> for your first order, <br>
+                                                Use discount code at checkout</p>
+                                            <div class="payment-method">
+                                                <img src="img/icons/payment.png" alt="#">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
+</div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-    </script>
-    <script>
-        Fancybox.bind("#gallery a", {
-            groupAll: true,
-        });
-    </script>
+<div class="preloader d-none" id="preloader">
+    <div class="preloader-inner">
+        <div class="spinner">
+            <div class="dot1"></div>
+            <div class="dot2"></div>
+        </div>
+    </div>
+</div>
 
+<script src="{{asset('users/js/plugins.js')}}"></script>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const loginCart = document.querySelector(".login-cart");
-            const cartLogo = document.querySelector(".cart img");
-            let lastScrollTop = 0;
+<script src="{{asset('users/js/main.js')}}"></script>
 
-            window.addEventListener("scroll", function() {
-                let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+</body>
+                     
 
-                if (scrollTop > lastScrollTop) {
-                    // Scrolling down
-                    loginCart.classList.add("scroll-active");
-                } else {
-                    // Scrolling up
-                    loginCart.classList.remove("scroll-active");
-                }
-                lastScrollTop = scrollTop;
-            });
-        });
-    </script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const toggleButton = document.querySelector('.toggle-button');
-            const sidebar = document.querySelector('.sidebar');
-            const overlay = document.querySelector('.overlay');
-            const navLinks = document.querySelectorAll('nav ul li a'); // Select all nav items
-
-            function toggleSidebar() {
-                sidebar.classList.toggle('active');
-                overlay.classList.toggle('active');
-            }
-
-            toggleButton.addEventListener('click', function() {
-                toggleSidebar();
-            });
-
-            overlay.addEventListener('click', function() {
-                toggleSidebar();
-            });
-
-            // Close sidebar when clicking on nav items
-            navLinks.forEach(function(link) {
-                link.addEventListener('click', function() {
-                    if (sidebar.classList.contains('active')) {
-                        toggleSidebar();
-                    }
-                });
-            });
-
-            document.addEventListener('click', function(event) {
-                if (!sidebar.contains(event.target) && !toggleButton.contains(event.target) && sidebar
-                    .classList.contains('active')) {
-                    toggleSidebar();
-                }
-            });
-        });
-    </script>
-    <script>
-        window.onscroll = function() {
-            scrollFunction();
-        };
-
-        function scrollFunction() {
-            const goToTopButton = document.getElementById("goToTop");
-            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-                goToTopButton.style.display = "block";
-            } else {
-                goToTopButton.style.display = "none";
-            }
-        }
-    </script>
 
 
 </body>

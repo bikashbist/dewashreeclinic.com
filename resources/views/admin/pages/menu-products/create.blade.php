@@ -1,10 +1,9 @@
-<!-- resources/views/admin/pages/menu-products/create.blade.php -->
 @extends('admin.admin-dashboard')
 @section('content')
 <div class="row">
     <div class="col-12">
         <h4>Create Menu Product</h4>
-        <form action="{{ route('menu-products.store') }}" method="POST">
+        <form action="{{ route('menu-products.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label for="menu_category_id" class="form-label">Menu Category</label>
@@ -22,6 +21,10 @@
             <div class="mb-3">
                 <label for="price" class="form-label">Product Price</label>
                 <input type="number" step="0.01" name="price" id="price" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="image" class="form-label">Product Image</label>
+                <input type="file" name="image" id="image" class="form-control" accept="image/*">
             </div>
             <button type="submit" class="btn btn-success">Submit</button>
         </form>

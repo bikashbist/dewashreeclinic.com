@@ -18,10 +18,17 @@ use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ContactInfoController;
 
 
+use App\Http\Controllers\BannerController;
+
+
 
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [UserController::class, 'index']);
+Route::get('/about', [UserController::class, 'about'])->name('about');
+Route::get('/shop', [UserController::class, 'shop'])->name('shop');
+Route::get('/services', [UserController::class, 'services'])->name('services');
+Route::get('/contact', [UserController::class, 'contact'])->name('contact');
 
 Route::get('/dashboard', function () {
     return view('admin/index');
@@ -42,6 +49,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('service-categories', ServiceCategoryController::class);
     Route::resource('service-products', ServiceProductController::class);
     Route::get('/messages', [AdminController::class, 'Message'])->name('messages.index');
+    Route::resource('banner', BannerController::class);
 
 });
 
