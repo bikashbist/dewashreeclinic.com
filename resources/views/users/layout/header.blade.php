@@ -1,15 +1,26 @@
+@php
+    use App\Models\ServiceCategory;
+
+    // Fetch categories and their related products directly
+    $serviceCategories = ServiceCategory::with('sproducts')->get();
+@endphp
 <header class="ltn__header-area ltn__header-3">
     <div class="ltn__header-top-area border-bottom">
         <div class="container">
             <div class="row">
                 <div class="col-md-7">
                     <div class="ltn__top-bar-menu">
+                        @if($contactInfo)
+                    
+                       
                         <ul>
-                            <li><a class="text-white" href="mailto:dewashreeclinic@gmail.com"><i
-                                        class="icon-mail"></i> dewashreeclinic@gmail.com</a></li>
-                            <li><a class="text-white" href="#"><i class="icon-placeholder"></i> Kathmandu,
-                                    Gokarneshwor -8, Atterkhel</a></li>
+                            <li><a class="text-white" href="mailto:{{ $contactInfo->email }}"><i
+                                        class="icon-mail"></i> {{ $contactInfo->email }}</a></li>
+                            <li><a class="text-white" href="#"><i class="icon-placeholder"></i> {{ $contactInfo->address }}</a></li>
                         </ul>
+                        @else
+                        <p>No contact information found. </p>
+                    @endif
                     </div>
                 </div>
 
@@ -50,10 +61,17 @@
             <div class="row">
                 <div class="col">
                     <div class="site-logo">
+                        @if($contactInfo)
+                        @if($contactInfo->logo)
                         <a href="/">
 
-                            <img src="{{asset('users/img/Dewashree.png')}}" alt="logo" height="80px" style="object-fit: contain;">
+                            <img src="{{ asset( $contactInfo->logo) }}" alt="logo" height="80px" style="object-fit: contain;">
                         </a>
+                    @else
+                        No Logo
+                    @endif
+                    @endif
+                       
                     </div>
                 </div>
                 <div class="col header-contact-serarch-column d-none d-lg-block">
@@ -84,8 +102,13 @@
                                             <i class="fa-brands fa-whatsapp fs-1 text-success"></i>
                                         </div>
                                         <div class="header-feature-info">
+                                            @if($contactInfo)
                                             <h6>Phone</h6>
-                                            <p><a href="tel:9767920300">+977-9767920300</a></p>
+                                            <p><a href="tel:{{ $contactInfo->phone }}">+977-{{ $contactInfo->phone }}</a></p>
+                                            @else
+                                            <p>No contact information found. </p>
+                                        @endif
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -105,7 +128,13 @@
                 <div class="col header-menu-column justify-content-center">
                     <div class="sticky-logo">
                         <div class="site-logo">
-                            <img src="{{asset('users/img/Dewashree.png')}}" alt="logo" height="80px" style="object-fit: contain;">
+                            @if($contactInfo)
+                            @if($contactInfo->logo)
+                            <img src="{{ asset( $contactInfo->logo) }}" alt="Logo" height="80px" style="object-fit: contain;">
+                        @else
+                            No Logo
+                        @endif
+                        @endif
                         </div>
                     </div>
                     <div class="header-menu header-menu-2">
@@ -123,17 +152,13 @@
                                     </li> 
                                     <li class="menu-icon"><a href="#">Services</a>
                                         <ul>
-                                            <li><a href="shop.html">Shop</a></li>
-                                            <li><a href="shop-grid.html">Shop Grid</a></li>
-                                            <li><a href="shop-left-sidebar.html">Shop Left sidebar</a></li>
-                                            <li><a href="shop-right-sidebar.html">Shop right sidebar</a></li>
-                                            <li><a href="product-details.html">Shop details </a></li>
+                                            @foreach($serviceCategories as $category)
+                                            <li><a href="{{ route('services.show', $category->id) }}">{{ $category->name }}</a></li>
+                                        @endforeach
                                           
                                         </ul>
                                     </li>
-                                    <li><a href="{{route('services')}}">Services</a>
-
-                                    </li>
+                                  
 
                                     <li><a href="{{route('contact')}}">Contact</a></li>
                                 </ul>

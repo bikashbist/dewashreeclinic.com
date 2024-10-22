@@ -21,7 +21,7 @@
             <tr>
                 <td>{{ $advertisement->id }}</td>
                 <td>{{ $advertisement->image_name }}</td>
-                <td><img src="{{ asset('storage/' . $advertisement->image) }}" alt="{{ $advertisement->image_name }}" width="100"></td>
+                <td><img src="{{ asset($advertisement->image) }}" alt="{{ $advertisement->image_name }}" width="100"></td>
                 <td>
                     <a href="{{ route('advertisements.edit', $advertisement->id) }}" class="btn btn-warning btn-sm">Edit</a>
                     <form action="{{ route('advertisements.destroy', $advertisement->id) }}" method="POST" style="display:inline-block;">

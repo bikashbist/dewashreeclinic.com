@@ -35,7 +35,7 @@ Route::get('/dashboard', function () {
     return view('admin/index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-
+Route::get('/services/{category}', [UserController::class, 'show'])->name('services.show');
 Route::post('/messages', [MessageController::class, 'store'])->name('messages.store');
 
 

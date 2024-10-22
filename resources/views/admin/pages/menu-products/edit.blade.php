@@ -26,7 +26,7 @@
                 <label for="image" class="form-label">Product Image</label>
                 <input type="file" name="image" id="image" class="form-control" accept="image/*">
                 @if($menuProduct->image)
-                    <img src="{{ asset('storage/' . $menuProduct->image) }}" alt="{{ $menuProduct->name }}" width="100">
+                    <img src="{{ asset( $menuProduct->image) }}" alt="{{ $menuProduct->name }}" width="100">
                 @endif
             </div>
             <button type="submit" class="btn btn-success">Update</button>

@@ -6,7 +6,7 @@
         <div class="user-profile text-center mt-3">
             <div class="">
                 {{-- <img src="{{asset('admin-dashboard/assets/images/logo.png')}}" alt="" class="avatar-md rounded-circle"> --}}
-                <img src="{{asset('admin-dashboard/assets/images/logo.png')}}" alt="" >
+                <img src="{{asset('admin-dashboard/assets/images/logo.png')}}" alt="" style="height: 60px" >
             </div>
             <div class="mt-3">
                 {{-- <h4 class="font-size-16 mb-1">Bakers Gallery</h4> --}}

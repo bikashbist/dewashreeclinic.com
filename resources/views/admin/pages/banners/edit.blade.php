@@ -13,7 +13,8 @@
         <div class="form-group">
             <label for="image">Current Image</label>
             <div>
-                <img src="{{ asset('storage/' . $banner->image) }}" alt="{{ $banner->image_name }}" style="width: 100px;">
+                <!-- Display the current image from 'uploads/user' directory -->
+                <img src="{{ asset($banner->image) }}" alt="{{ $banner->image_name }}" style="width: 100px;">
             </div>
             <input type="file" name="image" id="image" class="form-control">
         </div>

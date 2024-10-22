@@ -106,6 +106,7 @@
 
     <!-- App js -->
     <script src="{{ asset('admin-dashboard/assets/js/app.js') }} "></script>
+    
     @yield('script')
     <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
     <script>

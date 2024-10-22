@@ -21,7 +21,8 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $banner->image_name }}</td>
-                    <td><img src="{{ asset('storage/' . $banner->image) }}" alt="{{ $banner->image_name }}" style="width: 100px;"></td>
+                    <!-- Display the image from the 'uploads/user' directory -->
+                    <td><img src="{{ asset($banner->image) }}" alt="{{ $banner->image_name }}" style="width: 100px;"></td>
                     <td>
                         <a href="{{ route('banner.edit', $banner->id) }}" class="btn btn-warning btn-sm">Edit</a>
                         <form action="{{ route('banner.destroy', $banner->id) }}" method="POST" style="display:inline-block;">

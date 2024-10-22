@@ -5,19 +5,19 @@
             <div class="navbar-brand-box">
                 <a href="/admin-part" class="logo logo-dark">
                     <span class="logo-sm">
-                        <img src="{{asset('admin-dashboard/assets/images/logo.png')}}" alt="logo-sm" height="40">
+                        <img src="{{asset('admin-dashboard/assets/images/logo-icon.png')}}" alt="logo-sm" height="40">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{asset('admin-dashboard/assets/images/logo.png')}}" alt="logo-dark" height="40">
+                        <img src="{{asset('admin-dashboard/assets/images/logo-icon.png')}}" alt="logo-dark" height="40">
                     </span>
                 </a>
 
                 <a href="/admin-part" class="logo logo-light">
                     <span class="logo-sm">
-                        <img src="{{asset('admin-dashboard/assets/images/logo.png')}}" alt="logo-sm-light" height="40">
+                        <img src="{{asset('admin-dashboard/assets/images/logo-icon.png')}}" alt="logo-sm-light" height="40">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{asset('admin-dashboard/assets/images/logo.png')}}" alt="logo-light" height="40">
+                        <img src="{{asset('admin-dashboard/assets/images/logo-icon.png')}}" alt="logo-light" height="40">
                     </span>
                 </a>
             </div>
@@ -210,9 +210,9 @@
             <div class="dropdown d-inline-block user-dropdown">
                 <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="rounded-circle header-profile-user" src="{{asset('admin-dashboard/assets/images/logo.png')}}"
+                    <img class="rounded-circle header-profile-user" src="{{asset('admin-dashboard/assets/images/logo-icon.png')}}"
                         alt="Header Avatar">
-                    <span class="d-none d-xl-inline-block ms-1">Julia</span>
+                    <span class="d-none d-xl-inline-block ms-1">Dewashree</span>
                     <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-end">

@@ -27,7 +27,7 @@
             <label for="logo">Logo</label>
             @if($contactInfo->logo)
                 <div class="mb-2">
-                    <img src="{{ asset('storage/' . $contactInfo->logo) }}" alt="Logo" width="100">
+                    <img src="{{ asset( $contactInfo->logo) }}" alt="Logo" width="100">
                 </div>
             @endif
             <input type="file" name="logo" class="form-control">

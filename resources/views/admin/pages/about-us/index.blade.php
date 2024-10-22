@@ -1,4 +1,3 @@
-
 @extends('admin.admin-dashboard')
 @section('content')
 <div class="row">
@@ -6,7 +5,7 @@
         <h4>About Us</h4>
         @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
-    @endif
+        @endif
         @if($aboutUs)
             <a href="{{ route('about-us.edit', $aboutUs->id) }}" class="btn btn-warning btn-sm">Edit About Us</a>
             <table class="table table-bordered mt-3">
@@ -26,7 +25,7 @@
                         <td>{!! $aboutUs->description !!}</td>
                         <td>
                             @if ($aboutUs->image)
-                                <img src="{{ asset('storage/' . $aboutUs->image) }}" alt="About Us Image" width="100">
+                                <img src="{{ asset($aboutUs->image) }}" alt="About Us Image" width="100">
                             @else
                                 <p>No image available</p>
                             @endif

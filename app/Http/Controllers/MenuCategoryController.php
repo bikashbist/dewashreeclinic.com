@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\MenuCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class MenuCategoryController extends Controller
 {
@@ -32,7 +33,12 @@ class MenuCategoryController extends Controller
         // Handle the file upload
         $imagePath = null;
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('menu_categories', 'public');
+            $image = $request->file('image');
+            // Define the new file name
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            // Move the image to the 'uploads/menu_categories' directory
+            $imagePath = 'uploads/menu_categories/' . $imageName;
+            $image->move(public_path('uploads/menu_categories'), $imageName);
         }
 
         // Store the category with the image path
@@ -62,11 +68,14 @@ class MenuCategoryController extends Controller
         if ($request->hasFile('image')) {
             // Delete the old image if exists
             if ($menuCategory->image) {
-                \Storage::disk('public')->delete($menuCategory->image);
+                Storage::disk('public')->delete($menuCategory->image);
             }
 
-            // Store the new image
-            $imagePath = $request->file('image')->store('menu_categories', 'public');
+            // Move the new image
+            $image = $request->file('image');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $imagePath = 'uploads/menu_categories/' . $imageName;
+            $image->move(public_path('uploads/menu_categories'), $imageName);
             $menuCategory->image = $imagePath;
         }
 
@@ -84,7 +93,7 @@ class MenuCategoryController extends Controller
     {
         // Delete the image from storage if exists
         if ($menuCategory->image) {
-            \Storage::disk('public')->delete($menuCategory->image);
+            Storage::disk('public')->delete($menuCategory->image);
         }
 
         // Delete the category from the database

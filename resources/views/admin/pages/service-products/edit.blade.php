@@ -22,7 +22,7 @@
         </div>
         <div class="form-group">
             <label for="description">Description</label>
-            <textarea name="description" id="editor" class="form-control" rows="5" required>{{ $serviceProduct->description }}</textarea>
+            <textarea name="description" id="editor" class="form-control" rows="5" >{{ $serviceProduct->description }}</textarea>
         </div>
         <button type="submit" class="btn btn-primary">Update</button>
     </form>

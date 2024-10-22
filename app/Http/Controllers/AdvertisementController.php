@@ -1,7 +1,5 @@
 <?php
 
-
-
 namespace App\Http\Controllers;
 
 use App\Models\Advertisement;
@@ -31,12 +29,16 @@ class AdvertisementController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        // Store image
-        $imagePath = $request->file('image')->store('advertisements', 'public');
+        // Generate a unique file name with the current timestamp
+        $filename = time() . '.' . $request->image->getClientOriginalExtension();
+        
+        // Move the uploaded file to the 'uploads/advertisment' directory
+        $request->image->move(public_path('uploads/advertisment'), $filename);
 
+        // Create a new advertisement with the uploaded image
         Advertisement::create([
             'image_name' => $request->image_name,
-            'image' => $imagePath,
+            'image' => 'uploads/advertisment/' . $filename, // Store the image path
         ]);
 
         return redirect()->route('advertisements.index')->with('success', 'Advertisement added successfully.');
@@ -57,13 +59,22 @@ class AdvertisementController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            // Delete the old image
-            Storage::disk('public')->delete($advertisement->image);
-            // Store the new image
-            $imagePath = $request->file('image')->store('advertisements', 'public');
-            $advertisement->image = $imagePath;
+            // Delete the old image if it exists
+            if ($advertisement->image) {
+                Storage::delete($advertisement->image);
+            }
+
+            // Generate a new filename with the current timestamp
+            $filename = time() . '.' . $request->image->getClientOriginalExtension();
+
+            // Move the new image to the 'uploads/advertisment' directory
+            $request->image->move(public_path('uploads/advertisment'), $filename);
+
+            // Update the advertisement image path
+            $advertisement->image = 'uploads/advertisment/' . $filename;
         }
 
+        // Update the other fields
         $advertisement->image_name = $request->image_name;
         $advertisement->save();
 
@@ -73,11 +84,10 @@ class AdvertisementController extends Controller
     // Delete the advertisement
     public function destroy(Advertisement $advertisement)
     {
-        // Delete image
-        Storage::disk('public')->delete($advertisement->image);
+        // Delete the associated image
+        Storage::delete($advertisement->image);
         $advertisement->delete();
 
         return redirect()->route('advertisements.index')->with('success', 'Advertisement deleted successfully.');
     }
 }
-

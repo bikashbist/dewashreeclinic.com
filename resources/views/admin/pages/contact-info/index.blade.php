@@ -28,7 +28,7 @@
                     <td>{{ $contactInfo->address }}</td>
                     <td>
                         @if($contactInfo->logo)
-                            <img src="{{ asset('storage/' . $contactInfo->logo) }}" alt="Logo" width="100">
+                            <img src="{{ asset( $contactInfo->logo) }}" alt="Logo" width="100">
                         @else
                             No Logo
                         @endif

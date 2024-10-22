@@ -16,6 +16,8 @@
 
     @yield('content')
     <!-- CALL TO ACTION START (call-to-action-6) -->
+
+
     <div class="ltn__call-to-action-area call-to-action-6 before-bg-bottom" data-bs-bg="img/1.jpg--">
         <div class="container">
             <div class="row">
@@ -31,8 +33,12 @@
                                     <i class="fa-brands fa-whatsapp fs-1 text-success"></i>
                                 </div>
                                 <div class="header-feature-info">
+                                    @if($contactInfo)
                                     <h6>Phone</h6>
-                                    <p><a href="tel:9767920300">+977-9767920300</a></p>
+                                    <p><a href="tel:{{ $contactInfo->phone }}">+977-{{ $contactInfo->phone }}</a></p>
+                                    @else
+                                    <p>No contact information found. </p>
+                                @endif
                                 </div>
                             </div>
                         </div>
@@ -47,89 +53,85 @@
         <div class="footer-top-area  section-bg-2 plr--5">
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-xl-6 col-md-6 col-sm-6 col-12">
-                        <div class="footer-widget footer-about-widget">
-                            <div class="footer-logo">
-                                <div class="site-logo">
-                                    <img src="{{asset('users/img/Dewashree.png')}} " alt="logo" height="80px"
-                                        style="object-fit: contain;">
+
+                    @if($contactInfo)
+              
+            
+
+                        <div class="col-xl-6 col-md-6 col-sm-6 col-12">
+                            <div class="footer-widget footer-about-widget">
+                                <div class="footer-logo">
+                                    <div class="site-logo">
+                                    
+                                            @if($contactInfo->logo)
+                                            <img src="{{ asset( $contactInfo->logo) }}" alt="Logo" height="80px" style="object-fit: contain;">
+                                        @else
+                                            No Logo
+                                        @endif
+                                    </div>
+                                </div>
+                                <p>Dewashree Medical Clinic is a trusted medical pharmacy located in the heart of
+                                    Sankhamul, Kathmandu, dedicated to offering a comprehensive range of pharmaceutical
+                                    services and healthcare products.</p>
+
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-md-6 col-sm-6 col-12">
+                            <div class="footer-widget footer-menu-widget clearfix">
+                                <h4 class="footer-title">Contact Us</h4>
+
+                                <div class="footer-address">
+                                    <ul>
+                                        <li>
+                                            <div class="footer-address-icon">
+                                                <i class="icon-placeholder"></i>
+                                            </div>
+                                            <div class="footer-address-info">
+                                                <p>{{ $contactInfo->address }}</p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="footer-address-icon">
+                                                <i class="icon-call"></i>
+                                            </div>
+                                            <div class="footer-address-info">
+                                                <p><a href="tel:+977-{{ $contactInfo->phone }}">+977-{{ $contactInfo->phone }}</a></p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="footer-address-icon">
+                                                <i class="icon-mail"></i>
+                                            </div>
+                                            <div class="footer-address-info">
+                                                <p><a
+                                                        href="mailto:{{ $contactInfo->email }}">{{ $contactInfo->email }}</a>
+                                                </p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="ltn__social-media mt-20">
+                                    <ul>
+                                        <li><a class="" href="#" title="Facebook"><i
+                                                    class="fab fa-facebook-f"></i></a></li>
+                                
+
+                                        <li><a class="text-white" href="#" title="Instagram"><i
+                                                    class="fab fa-instagram"></i></a></li>
+                                        <li><a class="text-white" href="#" title="Viber"><i
+                                                    class="fab fa-viber"></i></a>
+                                        </li>
+
+
                                 </div>
                             </div>
-                            <p>Dewashree Medical Clinic is a trusted medical pharmacy located in the heart of
-                                Sankhamul, Kathmandu, dedicated to offering a comprehensive range of pharmaceutical
-                                services and healthcare products.</p>
-
                         </div>
-                    </div>
+                        @else
+                        <p>No contact information found. </p>
+                    @endif
 
-                    <div class="col-xl-4 col-md-6 col-sm-6 col-12">
-                        <div class="footer-widget footer-menu-widget clearfix">
-                            <h4 class="footer-title">Contact Us</h4>
-
-                            <div class="footer-address">
-                                <ul>
-                                    <li>
-                                        <div class="footer-address-icon">
-                                            <i class="icon-placeholder"></i>
-                                        </div>
-                                        <div class="footer-address-info">
-                                            <p>Kathmandu, Gokarneshwor -8, Atterkhel</p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="footer-address-icon">
-                                            <i class="icon-call"></i>
-                                        </div>
-                                        <div class="footer-address-info">
-                                            <p><a href="tel:+977-9767920300">+977-9767920300</a></p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="footer-address-icon">
-                                            <i class="icon-mail"></i>
-                                        </div>
-                                        <div class="footer-address-info">
-                                            <p><a
-                                                    href="mailto:dewashreeclinic@gmail.com">dewashreeclinic@gmail.com</a>
-                                            </p>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="ltn__social-media mt-20">
-                                <ul>
-                                    <li><a class="text-white" href="#" title="Facebook"><i
-                                                class="fab fa-facebook-f"></i></a></li>
-                            
-
-                                    <li><a class="text-white" href="#" title="Instagram"><i
-                                                class="fab fa-instagram"></i></a></li>
-                                    <li><a class="text-white" href="#" title="Viber"><i
-                                                class="fab fa-viber"></i></a>
-                                    </li>
-
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- <div class="col-xl-3 col-md-6 col-sm-12 col-12">
-                        <div class="footer-widget footer-newsletter-widget">
-                            <h4 class="footer-title">Newsletter</h4>
-                            <p>Subscribe to our weekly Newsletter and receive updates via email.</p>
-                            <div class="footer-newsletter">
-                                <form action="#">
-                                    <input type="email" name="email" placeholder="Email*">
-                                    <div class="btn-wrapper">
-                                        <button class="theme-btn-1 btn" type="submit"><i
-                                                class="fas fa-location-arrow"></i></button>
-                                    </div>
-                                </form>
-                            </div>
-                            <h5 class="mt-30">We Accept</h5>
-                            <img src="img/icons/payment-4.png" alt="Payment Image">
-                        </div>
-                    </div> -->
+              
                 </div>
             </div>
         </div>
@@ -138,15 +140,14 @@
                 <div class="row">
                     <div class="col-md-6 col-12">
                         <div class="ltn__copyright-design clearfix">
-                            <p>All Rights Reserved @ Company <span class="current-year"></span></p>
+                            <p>All Rights Reserved @ Dewashree <span class="current-year"></span></p>
                         </div>
                     </div>
                     <div class="col-md-6 col-12 align-self-center">
                         <div class="ltn__copyright-menu text-end">
                             <ul>
-                                <li><a href="#">Terms & Conditions</a></li>
-                                <li><a href="#">Claim</a></li>
-                                <li><a href="#">Privacy & Policy</a></li>
+                                <li><a href="https://www.facebook.com/bikas.bist.96" target="_blank">Design & Developed by:  <span class="text-warning">Bikash Bist</span></a></li>
+                                
                             </ul>
                         </div>
                     </div>
@@ -373,7 +374,64 @@
         </div>
     </div>
 </div>
+   <!-- Bootstrap Modal -->
+   <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="successModalLabel">Success</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <i class="fas fa-paper-plane fa-3x text-success mb-3"></i> <!-- Send Icon -->
+                @if (session('success'))
+                    <p>{{ session('success') }}</p>
+                @endif
+            </div>
+        </div>
+    </div>
+</div>
 
+<style>
+    /* Animation for the modal */
+    .modal.fade .modal-dialog {
+        transform: translate(0, -25%);
+        opacity: 0;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .modal.show .modal-dialog {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+
+    /* Animation for the icon */
+    .fa-paper-plane {
+        animation: bounce 0.5s infinite;
+    }
+
+    @keyframes bounce {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        @if (session('success'))
+            var successModal = new bootstrap.Modal(document.getElementById('successModal'));
+            successModal.show();
+
+            setTimeout(function () {
+                successModal.hide();
+            }, 3000);
+        @endif
+    });
+</script>
 <script src="{{asset('users/js/plugins.js')}}"></script>
 
 <script src="{{asset('users/js/main.js')}}"></script>

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Banner;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class BannerController extends Controller
 {
@@ -29,11 +28,16 @@ class BannerController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $imagePath = $request->file('image')->store('banners', 'public');
+        // Generate a unique file name with the current timestamp
+        $filename = time() . '.' . $request->image->getClientOriginalExtension();
 
+        // Move the uploaded file to the 'uploads/banner' directory
+        $request->image->move(public_path('uploads/banner'), $filename);
+
+        // Create the new banner with the image path
         Banner::create([
             'image_name' => $request->image_name,
-            'image' => $imagePath,
+            'image' => 'uploads/banner/' . $filename, // Store the image path
         ]);
 
         return redirect()->route('banner.index')->with('success', 'Banner created successfully.');
@@ -54,12 +58,25 @@ class BannerController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            Storage::delete('public/' . $banner->image);
-            $imagePath = $request->file('image')->store('banners', 'public');
+            // Delete the old image from 'uploads/banner'
+            $imagePath = public_path($banner->image);
+            if (file_exists($imagePath)) {
+                unlink($imagePath);  // Delete the old image
+            }
+
+            // Generate a unique file name with the current timestamp
+            $filename = time() . '.' . $request->image->getClientOriginalExtension();
+
+            // Move the new image to the 'uploads/banner' directory
+            $request->image->move(public_path('uploads/banner'), $filename);
+
+            // Update the banner image path
+            $imagePath = 'uploads/banner/' . $filename;
         } else {
             $imagePath = $banner->image;
         }
 
+        // Update the other fields
         $banner->update([
             'image_name' => $request->image_name,
             'image' => $imagePath,
@@ -71,7 +88,13 @@ class BannerController extends Controller
     // Delete the banner
     public function destroy(Banner $banner)
     {
-        Storage::delete('public/' . $banner->image);
+        // Delete the associated image from 'uploads/banner'
+        $imagePath = public_path($banner->image);
+        if (file_exists($imagePath)) {
+            unlink($imagePath);  // Delete the image
+        }
+
+        // Delete the banner record from the database
         $banner->delete();
 
         return redirect()->route('banner.index')->with('success', 'Banner deleted successfully.');

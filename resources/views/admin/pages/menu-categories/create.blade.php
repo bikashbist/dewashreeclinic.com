@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
     <div class="col-12">
-        <div class="card">
+        <div class="card p-4">
             <h4>Create Menu Category</h4>
 
             <form action="{{ route('menu-categories.store') }}" method="POST" enctype="multipart/form-data">

@@ -30,20 +30,11 @@
         </div>
         <div class="form-group mb-4">
             <label for="editor">Description</label>
-            <textarea name="description" id="editor" class="form-control" rows="5"  required></textarea>
+            <textarea name="description" id="editor" class="form-control" rows="5"  ></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Save</button>
     </form>
 </div>
-{{-- @section('script')
-<script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
-<script>
-    ClassicEditor
-        .create(document.querySelector('#editor'))
-        .catch(error => {
-            console.error(error);
-        });
-</script>
-@endsection --}}
+
 
 @endsection
